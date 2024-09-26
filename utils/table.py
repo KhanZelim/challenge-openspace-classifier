@@ -14,15 +14,15 @@ class Seat:
 
     def __str__(self):
         if self.free:
-            return f"Seat is unoccupied"
+            return f"is unoccupied"
         else:
-            return f"Seat is occupied by {self.occupant}"
+            return f"is occupied by {self.occupant}"
 
 class Table:
 
-    def __init__(self, capacity=6):
+    def __init__(self, capacity):
         self.capacity = capacity
-        seats = [Seat() for i in range(capacity)]
+        self.seats = [Seat() for i in range(capacity)]
 
     def has_free_spot(self):
         if self.capacity == 0:
@@ -32,11 +32,17 @@ class Table:
 
     def assign_seat(self, name):
         for seat in self.seats:
-            seat.super().set_occupant(name)
-        self.capacity -= 1
+            if seat.free == True:
+                seat.set_occupant(name)
+                self.capacity -= 1
+                break
 
     def left_capacity(self):
         return self.capacity
 
-    def __str__(self) -> str:
+    def __str__(self):
+<<<<<<< Updated upstream
+        return f"Capacity: {self.capacity}"
+=======
         return ""
+>>>>>>> Stashed changes

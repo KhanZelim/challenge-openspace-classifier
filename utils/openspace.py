@@ -1,9 +1,9 @@
 from typing import Self
-from .table import Table 
+from table import Table 
 
 
 class Openspace:
-    def __init__(self,number_of_tables: int = 6,tables : list = None) -> Self.object:
+    def __init__(self,number_of_tables: int = 6,tables : list = None) -> Self:
         """
             Constructor of classs Openspace.
             :param number_of_tabels: An int that perform number of tabels available.
@@ -33,20 +33,24 @@ class Openspace:
 
     def __repr__(self) -> None:
         """
-            Function that display the different Tables and there occupants in a nice and readable way.
+            Function that display the different Tables and there occupants in a nice 
+            and readable way.
             :param: None.
             :return: Nothing.
         """
-        pass
+        for index,tabel in enumerate(self.tables,start=1):
+            print(f'Tabel#{index}')
+            for index,seat in enumerate(tabel.seats, start=1):
+                if not seat.free:
+                    print(f'Chair#{index} is occupied by {seat.occupant.Ca}')
 
 
     def store(self,filename : str) -> None:
         """
-            Function that display the different Tables and there occupants in a nice and readable way.
+            Function 
             :param: None.
             :return: Nothing.
         """
 
         pass
-
 

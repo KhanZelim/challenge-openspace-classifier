@@ -41,8 +41,4 @@ class Table:
         return self.capacity
 
     def __str__(self):
-<<<<<<< Updated upstream
         return f"Capacity: {self.capacity}"
-=======
-        return ""
->>>>>>> Stashed changes

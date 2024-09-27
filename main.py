@@ -1,10 +1,12 @@
 from utils.openspace import Openspace
-import csv
+import pandas as pd
 
 classroom = Openspace()
-myfile = "./new_colleagues.csv"
+colleagueslist = []
 
-with open(myfile, "r") as colleagues:
-    csvColleagues = csv.reader(colleagues)
-    for name in csvColleagues:
-        print(name)
+csvColleagues = pd.read_csv("new_colleagues.csv", header=None)
+for row in csvColleagues.itertuples():
+    colleagueslist.append(row[1])
+
+classroom.organize(colleagueslist)
+classroom.dysplay()

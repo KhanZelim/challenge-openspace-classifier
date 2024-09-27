@@ -6,7 +6,7 @@ class Seat:
         self.free = True
         self.occupant = ""
 
-    def set_occupant(self, name: str):
+    def set_occupant(self, name: str) -> None:
         """
         Function that will set the occupant to the given name (in param)
         
@@ -15,12 +15,12 @@ class Seat:
         self.occupant = name
         self.free = False
 
-    def remove_occupant(self):
+    def remove_occupant(self) -> None:
         """Function that will set the occupant to a blank string and sets the seat free"""
         self.occupant = ""
         self.free = True
 
-    def __str__(self):
+    def __str__(self) -> str:
         """A string representation of the seat's status"""
         if self.free:
             return f"is unoccupied"
@@ -39,7 +39,7 @@ class Table:
         self.capacity = capacity
         self.seats = [Seat() for _ in range(capacity)]
 
-    def has_free_spot(self):
+    def has_free_spot(self) -> bool:
         """Function that will check if there are any free spots"""
         if self.capacity == 0:
             return False
@@ -52,9 +52,9 @@ class Table:
             :return:None
         """
         self.capacity+=1
-        self.seats.append(Seat())
+        self.seats.append(Seat()) 
 
-    def assign_seat(self, name: str):
+    def assign_seat(self, name: str) -> None:
         """Function that will assign an occupant to an empty seat"""
         for seat in self.seats:
             if seat.free == True:
@@ -62,10 +62,13 @@ class Table:
                 self.capacity -= 1
                 break
 
-    def left_capacity(self):
-        """Function that returns the capacity left"""
+    def left_capacity(self) -> int:
+        """
+            Function that returns the capacity left
+            :return: int capacity of the tabel
+        """
         return self.capacity
 
-    def __str__(self):
+    def __str__(self) -> str:
         """A string representation of the table's status"""
         return f"Capacity: {self.capacity}"

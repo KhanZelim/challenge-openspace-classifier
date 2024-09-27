@@ -8,6 +8,31 @@ import pandas as pd
 
 
 class Openspace:
+    """
+    class Openspace create object of roomspace for users team
+    :property:  number_of_tabels An int that perform number of tables available.
+                tabel capacity: An int that performe number of seats per one table available
+                tables list of Tabel objects
+                names team members with no seats
+                capacity amount of seats in room, max=34
+                _flag flag that is showing if there is people without seats left in the room 
+    :methods:   __init__
+                __str__
+                organize
+                dysplay
+                store
+                has_space
+                add_table
+                add_seat_to_all_tables
+                add_both
+                assing_occupants
+                avoiding_loneliness
+                is_enough_space
+                implemnt_decision
+    
+    
+    
+    """
     def __init__(self,number_of_tables: int = 6, table_capacity: int = 4) -> Self:
         """
             Constructor of classs Openspace.

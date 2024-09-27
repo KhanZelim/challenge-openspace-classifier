@@ -22,6 +22,7 @@ This script runs everyday to re-assign everybody to a new seat.
 ├── main.py
 ├── new_colleagues.csv
 ├── output.xlsx
+├── requirements.txt
 └── README.md
 ```
 

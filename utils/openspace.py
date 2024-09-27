@@ -1,6 +1,6 @@
 from typing import Self
-from table import Table 
-from file_utils import *
+from .table import Table 
+from .file_utils import *
 import random
 import pandas as pd
 

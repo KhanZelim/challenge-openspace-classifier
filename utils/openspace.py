@@ -67,6 +67,7 @@ class Openspace:
 
         """
         self.table_capacity += 1
+        self.capacity+=self.number_of_tabels
         for table in self.tables:
             table.add_seat()
             
@@ -125,6 +126,7 @@ class Openspace:
             else:
                 try:
                     tabel.assign_seat(self.names.pop())
+                    self.capacity-=1
                 except:
                     continue
         else:
@@ -132,6 +134,7 @@ class Openspace:
                 for tabel in self.tables:
                     if tabel.capacity == self.table_capacity:
                         [tabel.assign_seat(self.names.pop()) for i in range(len(self.names)) ]
+                        self.capacity-=1
 
     
     

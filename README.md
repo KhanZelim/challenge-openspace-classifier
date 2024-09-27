@@ -26,6 +26,10 @@ This script runs everyday to re-assign everybody to a new seat.
 └── README.md
 ```
 
+## Installation
+
+
+
 ## 🛎️ Usage
 
 1. Clone the repository to your local machine.
@@ -66,6 +70,10 @@ open_space.display()
 ## ⏱️ Timeline
 
 This project took two days for completion.
+
+## Contributors
+
+
 
 ## 📌 Personal Situation
 This project was done as part of the AI Boocamp at BeCode.org. 

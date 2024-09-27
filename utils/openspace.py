@@ -204,7 +204,7 @@ class Openspace:
                             for tabel in self.tables
                             }
         df = pd.DataFrame(repartition_dict.items(), columns = ['tabels','seats'],index = [index for index,val in enumerate(repartition_dict,start=1)])
-        df.to_excel(df,f'{filename}.xlsx')
+        df.to_excel(f'{filename}.xlsx')
 
     
     

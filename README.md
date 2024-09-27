@@ -57,10 +57,10 @@ open_space.store(output_filename)
 open_space.display()
 ```
 4. If there aren't enough seats available, it will ask you to input 'S', 'T', 'N' or 'B':
-    'T' adds one table
-    'S' adds one seat for each table
-    'B' adds one table or add one seat to each table
-    'N' Nothing
+    'T': add one table, 
+    'S': add one seat for each table, 
+    'B': add one table or add one seat to each table, 
+    'N': do nothing
 
 ## ⏱️ Timeline
 
@@ -69,4 +69,4 @@ This project took two days for completion.
 ## 📌 Personal Situation
 This project was done as part of the AI Boocamp at BeCode.org. 
 
-Connect with me on [LinkedIn](https://www.linkedin.com/in/vriveraq/).
+Connect with me on [LinkedIn](www.linkedin.com/in/zelimkhan-jachichanov-54b9231a7).

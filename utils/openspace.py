@@ -1,6 +1,6 @@
 from typing import Self
-from .table import Table 
-from .file_utils import *
+from table import Table 
+from file_utils import *
 import random
 import pandas as pd
 
@@ -93,11 +93,13 @@ class Openspace:
         bool_list = [tabel.capacity==min_cap for tabel in self.tables]
         while True:
             choised_tabel = random.choice(self.tables)
+            
             if choised_tabel.has_free_spot():
                 if choised_tabel.capacity > min_cap:
                     choised_tabel.assign_seat(name)
                     break
-                elif bool_list.count(True) == 6:
+                elif bool_list.count(True) == self.number_of_tabels:
+
                     choised_tabel.assign_seat(name)
                     break
                 else:
@@ -160,6 +162,7 @@ class Openspace:
                 self.names = names
             case 'B':
                 self.add_both()
+                    
 
 
     def organize(self,names : list) -> None:
@@ -174,8 +177,16 @@ class Openspace:
             self.avoiding_loneliness()
 
         else:
-            flag = to_many_quest(names)
+
+            flag = to_many_quest(names,self.number_of_tabels,self.table_capacity)
             self.implemnt_decision(flag,names)
+            if self.capacity > len(names):
+                for name in names:
+                    self.assing_occupants(name)
+                self.avoiding_loneliness()
+                    
+            
+            
         
     
         

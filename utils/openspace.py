@@ -96,11 +96,9 @@ class Openspace:
             if choised_tabel.has_free_spot():
                 if choised_tabel.capacity > min_cap:
                     choised_tabel.assign_seat(name)
-                    print(f'{name} is assign')
                     break
                 elif bool_list.count(True) == 6:
                     choised_tabel.assign_seat(name)
-                    print(f'{name} is assign')
                     break
                 else:
                     continue
@@ -173,9 +171,8 @@ class Openspace:
         if self.is_enough_space(names):
             for name in names:
                 self.assing_occupants(name)
-                print('00')
             self.avoiding_loneliness()
-            print('01')
+
         else:
             flag = to_many_quest(names)
             self.implemnt_decision(flag,names)
@@ -207,7 +204,7 @@ class Openspace:
                             for tabel in self.tables
                             }
         df = pd.DataFrame(repartition_dict.items(), columns = ['tabels','seats'],index = [index for index,val in enumerate(repartition_dict,start=1)])
-        pd.DataFrame.to_excel(df,f'repartition_file.xlsx')
+        df.to_excel(df,f'{filename}.xlsx')
 
     
     

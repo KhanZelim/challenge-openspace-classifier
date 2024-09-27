@@ -1,16 +1,24 @@
 from utils.openspace import Openspace
 import pandas as pd
+from os import path as p
+#"/Users/igorafanasIev/Desktop/becode_projects/challenge-openspace-classifier/challenge-openspace-classifier/new_colleagues.csv"
 
-# Declare variables
 classroom = Openspace()
 colleagueslist = []
+while True:
+    path = input('Enter file path')
+    if p.exists(path):
+        csvColleagues = pd.read_csv(path, header=None)
+        for row in csvColleagues.itertuples():
+            colleagueslist.append(row[1])
+        break
+    else:
+        print('Incorrect path,try again')
 
-# Read the file and append the list with the names
-csvColleagues = pd.read_csv("new_colleagues.csv", header=None)
-for row in csvColleagues.itertuples():
-    colleagueslist.append(row[1])
-
-# Seat everybody, display it and store it
 classroom.organize(colleagueslist)
-classroom.display()
-classroom.store("output.xlsx")
+classroom.dysplay()
+filename = input('Enter the name of file you gonna save')
+try:
+    classroom.store('filename')
+except:
+    print('Something wrong')

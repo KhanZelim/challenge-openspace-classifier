@@ -22,8 +22,13 @@ This script runs everyday to re-assign everybody to a new seat.
 ├── main.py
 ├── new_colleagues.csv
 ├── output.xlsx
+├── requirements.txt
 └── README.md
 ```
+
+## Installation
+
+
 
 ## 🛎️ Usage
 
@@ -65,6 +70,10 @@ open_space.display()
 ## ⏱️ Timeline
 
 This project took two days for completion.
+
+## Contributors
+
+
 
 ## 📌 Personal Situation
 This project was done as part of the AI Boocamp at BeCode.org. 

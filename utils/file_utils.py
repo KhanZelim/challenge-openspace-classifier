@@ -1,43 +1,43 @@
 import re
-
 def sure_quest():
-    answ = input('Are you sure? Y/N')
+    answ = input('Are uou sure?Y/N')
     match answ:
         case "Y":
             return True
         case "N":
             return False
         case _:
-            print("I think it's Yes")
+            print('I think its Yes')
             return True
 
 
-def too_many_quest(names: list, table_num: int =6, number_of_seats: int =4) -> str:
+def to_many_quest(names : list, tabel_num : int = 6,number_of_seat :int = 4) -> str:
     while True:
         flag = input(""" There is mot enough space in the openspace to fit all collegeus.
-            What do you want to do ?
-          Type:
-            'T': Add one tabel
-            'S': Add one seat for each tabel
-            'B': Add one tabel or add one seat for each tabel
-            'N': Nothing
+            What you want to do ?
+          Press:
+            'T' add one tabel
+            'S' add one seat for each tabel 
+            'B' add one tabel add one seat for each tabel 
+            'N' Nothing. add extracolumn in your inpu
             
-          """)   
-        if re.fullmatch("^[NBTS]$", flag):
+          """)
+    
+        if re.fullmatch("^[NBTS]$",flag):
             match flag:
                 case 'T':
                     if len(names) > 1:
                         return flag
                     else:
                         while True:
-                            flag = input("""Colleague shouldn't be alone.
-                                    S: Add one seat to each table
-                                    N: Nothing
+                            flag = input(""" Employ shouldn't be alone.
+                                    S : one seat to each table
+                                    N : Nothing
                                   """)
                             if re.fullmatch('^[SN]$',flag):
                                 return flag
                             else:
-                                print("Incorrect input. Please, type 'S' or 'N'")
+                                print('Incorrect input. Please, enter S or N')
                                 continue
                 case 'S':
                     return flag
@@ -47,31 +47,32 @@ def too_many_quest(names: list, table_num: int =6, number_of_seats: int =4) -> s
                     else:
                         return 'S'
                 case 'B':
-                    len_names = len(names)
-                    if len_names < number_of_seats and len_names < table_num:
-                        if len_names <= 1:
-                            print("Only adding seats is possible")
+                    len_names = len(names )
+                    if len_names< number_of_seat and len_names < tabel_num:
+                        if len_names <=1:
+                            print("only adding seats is possible")
                             return 'S'
                         else:
                             while True:
                                 flag = input("""
-                                             Just adding a table or adding one seat per tabel will be enough
-                                             T: Add a table
-                                             S: Add one seat per tabel 
+                                             Just tabel or just one seat per each tabel will be enough
+                                             T : add tabel
+                                             S : add one seat for each tabel 
                                              """)
-                                if re.fullmatch('^[TS]$', flag):
+                                if re.fullmatch('^[TS]$',flag):
                                     return flag
                                 else:
-                                    print("Incorrect input. Please, type 'S' or 'T'")
+                                    print('Incorrect input. Please, enter S or T')
                                     continue
-                    elif len_names > number_of_seats + table_num or (len_names > number_of_seats and table_num < len_names):
+                    elif len_names > number_of_seat+tabel_num or (len_names>number_of_seat and tabel_num< len_names):
                         return flag
-                    elif len_names > table_num and len_names <= number_of_seats:
-                        print("One table is enough")
+                    elif len_names > tabel_num and len_names <= number_of_seat:
+                        print("1 Table is enogh")
                         return 'T'
-                    elif len_names <= table_num and len_names > number_of_seats:
-                        print('One seat per tabel is enough')
+                    elif len_names <= tabel_num and len_names > number_of_seat:
+                        print('One Seat per tabel is enough')
                         return 'S'
+
         else:
-            print("Incorrect input. Please, type 'T', 'S', 'B' or 'N'")
+            print('Incorrect input. Please,enter T,S,B or N')
             continue

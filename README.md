@@ -21,7 +21,7 @@ This script runs everyday to re-assign everybody to a new seat.
 ├── .gitignore
 ├── main.py
 ├── new_colleagues.csv
-├── output.csv
+├── output.xlsx
 └── README.md
 ```
 
@@ -35,14 +35,14 @@ This script runs everyday to re-assign everybody to a new seat.
     python main.py
     ```
 
-3. The script reads your input file, and organizes your colleagues to random seat assignments. The resulting seating plan is displayed in your console and also saved to an "output.csv" file in your root directory. 
+3. The script reads your input file, and organizes your colleagues (up to 35) to random seat assignments. The resulting seating plan is displayed in your console and also saved to an "output.xlsx" file in your root directory.
 
 ```python
 input_filepath = "new_colleagues.csv"
-output_filename = "output.csv"
+output_filename = "output.xlsx"
 
 # Creates a list that contains all the colleagues names
-names = utils.read_names_from_csv(input_filepath)
+names = pd.read_csv(input_filepath, header=None)
 
 # create an OpenSpace()
 open_space = OpenSpace()
@@ -56,6 +56,12 @@ open_space.store(output_filename)
 # display assignments in the terminal
 open_space.display()
 ```
+4. If there aren't enough seats available, it will ask you to input 'S', 'T', 'N' or 'B':
+    'T' adds one table
+    'S' adds one seat for each table
+    'B' adds one table or add one seat to each table
+    'N' Nothing
+
 ## ⏱️ Timeline
 
 This project took two days for completion.

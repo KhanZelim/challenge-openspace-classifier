@@ -10,3 +10,4 @@ for row in csvColleagues.itertuples():
 
 classroom.organize(colleagueslist)
 classroom.dysplay()
+classroom.store("output.xlsx")

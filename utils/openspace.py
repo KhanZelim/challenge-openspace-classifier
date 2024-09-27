@@ -67,6 +67,7 @@ class Openspace:
 
         """
         self.table_capacity += 1
+        self.capacity+=self.number_of_tabels
         for table in self.tables:
             table.add_seat()
             
@@ -78,7 +79,6 @@ class Openspace:
             :return:None
 
         """
-        self.table_capacity +=1
         self.add_table()
         self.add_seat_to_all_tables()
 
@@ -91,17 +91,24 @@ class Openspace:
             :return: None.
         """
         min_cap = min([table.capacity for table in self.tables])
-        counter = 0
-        while counter < len(self.tables):
-            counter+=1
+        bool_list = [tabel.capacity==min_cap for tabel in self.tables]
+        while True:
             choised_tabel = random.choice(self.tables)
-            if choised_tabel.capacity == min_cap or not choised_tabel.has_free_spot():
-                continue
+            
+            if choised_tabel.has_free_spot():
+                if choised_tabel.capacity > min_cap:
+                    choised_tabel.assign_seat(name)
+                    break
+                elif bool_list.count(True) == self.number_of_tabels:
+
+                    choised_tabel.assign_seat(name)
+                    break
+                else:
+                    continue
+                    
             else:
-                choised_tabel.assign_seat(name)
-                break
-        else:
-            choised_tabel.assign_seat(name)
+                continue
+    
 
 
     def avoiding_loneliness(self) -> None:
@@ -119,6 +126,7 @@ class Openspace:
             else:
                 try:
                     tabel.assign_seat(self.names.pop())
+                    self.capacity-=1
                 except:
                     continue
         else:
@@ -126,6 +134,7 @@ class Openspace:
                 for tabel in self.tables:
                     if tabel.capacity == self.table_capacity:
                         [tabel.assign_seat(self.names.pop()) for i in range(len(self.names)) ]
+                        self.capacity-=1
 
     
     
@@ -156,6 +165,7 @@ class Openspace:
                 self.names = names
             case 'B':
                 self.add_both()
+                    
 
 
     def organize(self,names : list) -> None:
@@ -167,10 +177,19 @@ class Openspace:
         if self.is_enough_space(names):
             for name in names:
                 self.assing_occupants(name)
-                self.avoiding_loneliness()
+            self.avoiding_loneliness()
+
         else:
-            flag = to_many_quest(names)
+
+            flag = to_many_quest(names,self.number_of_tabels,self.table_capacity)
             self.implemnt_decision(flag,names)
+            if self.capacity > len(names):
+                for name in names:
+                    self.assing_occupants(name)
+                self.avoiding_loneliness()
+                    
+            
+            
         
     
         
@@ -195,12 +214,8 @@ class Openspace:
             :param: string that represent files name.
             :return: Nothing.
         """
-        repartition_dict = {f'{tabel}': [f'Seat #{index } {str(seat)}' for index,seat in enumerate(tabel.seats,start=1)] 
-                            for tabel in self.tables
+        repartition_dict = {f'Table {i + 1}': [f'Seat #{index} {str(seat)}' for index,seat in enumerate(tabel.seats, start= 1)] 
+                            for i, tabel in enumerate(self.tables)
                             }
-        df = pd.DataFrame(repartition_dict.items(), columns = ['tabels','seats'],index = [index for index,val in enumerate(repartition_dict,start=1)])
-        pd.DataFrame.to_excel(df,f'repartition_file.xlsx')
-
-    
-    
-
+        df = pd.DataFrame(repartition_dict.items(), columns = ['Tables', 'Seats'])
+        df.to_excel(filename, index= False)

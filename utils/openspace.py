@@ -242,8 +242,23 @@ class Openspace:
         repartition_dict = {f'{tabel}': [f'Seat #{index } {str(seat)}' for index,seat in enumerate(tabel.seats,start=1)] 
                             for tabel in self.tables
                             }
+    
         df = pd.DataFrame(repartition_dict.items(), columns = ['tabels','seats'],index = [index for index,val in enumerate(repartition_dict,start=1)])
-        df.to_excel(f'{filename}.xlsx')
+        while True: 
+            answ = input('If you wanna save file in csv press "C", if in xlsx press X. C/X')
+            match answ:
+                case 'C':
+                    df.to_csv(f'{filename}.csv')
+                    break
+                case 'X':
+                    df.to_excel(f'{filename}.xlsx')
+                    break
+                case _:
+                    print('incorrect leter, try again')
+                
+
+
+    
 
     
     

@@ -10,7 +10,7 @@ class Seat:
         """
         Function that will set the occupant to the given name (in param)
         
-        :param name: A string representing the occupant's name
+        :param name: str representing the occupant's name
         """
         self.occupant = name
         self.free = False
@@ -21,7 +21,11 @@ class Seat:
         self.free = True
 
     def __str__(self) -> str:
-        """A string representation of the seat's status"""
+        """
+        A string representation of the seat's status
+        
+        :return: str representing the seat's occupancy and/or occupant
+        """
         if self.free:
             return f"is unoccupied"
         else:
@@ -34,7 +38,7 @@ class Table:
         """
         Constructor of class Table
         
-        :param capacity: An int representing the capacity of the table
+        :param capacity: int representing the capacity of the table
         """
         self.capacity = capacity
         self.seats = [Seat() for _ in range(capacity)]
@@ -51,15 +55,12 @@ class Table:
             return True
         
     def add_seat(self) -> None:
-        """
-            Function that adds one seat to the table
-            :return:None
-        """
+        """Function that adds one seat to the table nad increases capacity by one"""
         self.capacity += 1
         self.seats.append(Seat())
 
     def assign_seat(self, name: str)  -> None:
-        """Function that will assign an occupant to an empty seat"""
+        """Function that will assign an occupant to an empty seat and decrease capacity by one"""
         for seat in self.seats:
             if seat.free == True:
                 seat.set_occupant(name)
@@ -67,9 +68,17 @@ class Table:
                 break
 
     def left_capacity(self)  -> int:
-        """Function that returns the capacity left"""
+        """
+        Function that returns the capacity left
+        
+        :return: int representing capacity
+        """
         return self.capacity
 
     def __str__(self)  -> str:
-        """A string representation of the table's capacity"""
+        """
+        A string representation of the table's capacity
+        
+        :return: str representing the table's capacity
+        """
         return f"Capacity: {self.capacity}"

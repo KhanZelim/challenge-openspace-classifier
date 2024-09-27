@@ -45,6 +45,14 @@ class Table:
             return False
         else:
             return True
+        
+    def add_seat(self) -> None:
+        """
+            Function is adding one seat  Table
+            :return:None
+        """
+        self.capacity+=1
+        self.seats.append(Seat())
 
     def assign_seat(self, name):
         """Function that will assign an occupant to an empty seat"""

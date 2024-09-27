@@ -57,10 +57,10 @@ open_space.store(output_filename)
 open_space.display()
 ```
 4. If there aren't enough seats available, it will ask you to input 'S', 'T', 'N' or 'B':
-    'T' add one table, 
-    'S' add one seat for each table, 
-    'B' add one table or add one seat to each table, 
-    'N' do nothing
+    'T': add one table, 
+    'S': add one seat for each table, 
+    'B': add one table or add one seat to each table, 
+    'N': do nothing
 
 ## ⏱️ Timeline
 

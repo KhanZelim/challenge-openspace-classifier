@@ -1,2 +1,4 @@
 # created by virtualenv automatically
 venv/
+utils/__pycache__
+test.py

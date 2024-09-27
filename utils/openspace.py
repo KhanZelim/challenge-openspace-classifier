@@ -1,6 +1,6 @@
 from typing import Self
-from table import Table 
-from file_utils import *
+from .table import Table 
+from .file_utils import *
 import random
 import pandas as pd
 
@@ -105,27 +105,27 @@ class Openspace:
 
 
     def avoiding_loneliness(self) -> None:
-                """
-                    Function that does not allow a table with a single employee.
-                    :return: None.
+        """
+        Function that does not allow a table with a single employee.
+        :return: None.
                 
-                """
+        """
+        for tabel in self.tables:
+            if tabel.capacity == (self.table_capacity - 1):
+                for seat in tabel.seats:
+                    if not seat.free:
+                        self.names.append(seat.occupant)
+                        seat.remove_occupant()
+            else:
+                try:
+                    tabel.assign_seat(self.names.pop())
+                except:
+                    continue
+        else:
+            while len(self.names) != 0:
                 for tabel in self.tables:
-                    if tabel.capacity == (self.table_capacity - 1):
-                        for seat in tabel.seats:
-                            if not seat.free:
-                                self.names.append(seat.occupant)
-                                seat.remove_occupant()
-                    else:
-                        try:
-                            tabel.assign_seat(self.names.pop())
-                        except:
-                            continue
-                else:
-                    while len(self.names) != 0:
-                        for tabel in self.tables:
-                            if tabel.capacity == self.table_capacity:
-                                [tabel.assign_seat(self.names.pop()) for i in range(len(self.names)) ]
+                    if tabel.capacity == self.table_capacity:
+                        [tabel.assign_seat(self.names.pop()) for i in range(len(self.names)) ]
 
     
     
@@ -169,7 +169,7 @@ class Openspace:
                 self.assing_occupants(name)
                 self.avoiding_loneliness()
         else:
-            flag = to_many_quest()
+            flag = to_many_quest(names)
             self.implemnt_decision(flag,names)
         
     

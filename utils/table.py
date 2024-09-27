@@ -6,7 +6,7 @@ class Seat:
         self.free = True
         self.occupant = ""
 
-    def set_occupant(self, name):
+    def set_occupant(self, name: str):
         """
         Function that will set the occupant to the given name (in param)
         
@@ -30,7 +30,7 @@ class Seat:
 class Table:
     """Class representing one table"""
 
-    def __init__(self, capacity):
+    def __init__(self, capacity: int):
         """
         Constructor of our class
         
@@ -54,7 +54,7 @@ class Table:
         self.capacity+=1
         self.seats.append(Seat())
 
-    def assign_seat(self, name):
+    def assign_seat(self, name: str):
         """Function that will assign an occupant to an empty seat"""
         for seat in self.seats:
             if seat.free == True:

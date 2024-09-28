@@ -4,6 +4,11 @@ from os import path as p
 #/Users/igorafanasIev/Desktop/becode_projects/challenge-openspace-classifier/challenge-openspace-classifier/new_colleagues.csv
 
 def read_from_csv() -> list:
+    """
+        Function read csv file with names of colleagues and returns list of colleagues.
+        :return:colleagueslist list of colleagues.
+    
+    """
     colleagueslist = []
     while True:
         path = input('Enter file path')
@@ -18,13 +23,23 @@ def read_from_csv() -> list:
     return colleagueslist
 
 def ask_filename() -> None:
+    """
+    Function asks user about name of file with seatmap of openspace,
+        and about format of file.
+    :return: None
+    """
     filename = input('Enter the name of file you gonna save')
     try:
         classroom.store(filename)
     except:
         print('Something wrong')
 
-def ask_about_size():
+def ask_about_size() -> Openspace:
+    """
+        Function allows user to set up quantity of tables en seats per each table.
+        :return: Openspace created instance of class Openspace.
+
+    """
     while True:
         set_up_classroom_in = input("""
                                 You want set up the size of Classroom or run with default size, 6 tabels X 4 seats?

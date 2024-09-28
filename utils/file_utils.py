@@ -1,6 +1,9 @@
 import re
-def sure_quest():
-    
+def sure_quest()->bool:
+    """
+    Function asks the user if they are sure.
+    :return: bool True if user is sure, False otherwise
+    """
     answ = input('Are uou sure?Y/N')
     match answ:
         case "Y":
@@ -13,6 +16,13 @@ def sure_quest():
 
 
 def to_many_quest(names : list, tabel_num : int = 6,number_of_seat :int = 4,openspace_capasity :int=24) -> str:
+    """
+        Function that handles interaction with the user in case of insufficient seating in the openspace.        :param: list names  of colleagues names
+        :param: int tabel_num quantity of tables in the room  
+        :param: int number_of_seat quantity of seats per table
+        :param: int openspace_capacity capacity of current openspace
+        :return: str Flag for implemnt_decision function from openspace
+    """
     while True:
         flag = input(""" There is mot enough space in the openspace to fit all collegeus.
             What you want to do ?

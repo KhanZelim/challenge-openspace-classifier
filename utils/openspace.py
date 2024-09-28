@@ -1,6 +1,6 @@
 from typing import Self
-from table import Table 
-from file_utils import *
+from .table import Table 
+from .file_utils import *
 import random
 import pandas as pd
 
@@ -29,6 +29,7 @@ class Openspace:
                 avoiding_loneliness
                 is_enough_space
                 implemnt_decision
+                fix_size_loop
     
     """
     def __init__(self,number_of_tables: int = 6, table_capacity: int = 4) -> Self:
@@ -188,6 +189,12 @@ class Openspace:
 
 
     def fix_size_loop(self, names:list)->tuple:
+                """
+                    Function that iniciate interaction with user, 
+                        about how to fix openspace capasity problem.
+                    :param: names list is containing names of сolleagues in string.
+                    :return: tuple (int,int) = (self capacity of the Openspace, Quantety of colleagues).
+                """
                 flag = to_many_quest(names,self.number_of_tabels,self.table_capacity,self.capacity)
                 self.implemnt_decision(flag,names)
                 if_capasity = (self.capacity >= len(names)) 

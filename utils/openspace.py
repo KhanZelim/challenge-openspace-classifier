@@ -199,14 +199,20 @@ class Openspace:
                     for name in names:
                         self.assing_occupants(name)
                     self.avoiding_loneliness()
+                    self.assign_leaders()
                     return (self.capacity,len(names))
                 elif self._flag:
                     for name in names[:self.capacity]:
                         self.assing_occupants(name)
                     self.avoiding_loneliness()
+                    self.assign_leaders()
                     return (self.capacity,len(names),self.names)
                 else:
-                    self.fix_size_loop(names)                    
+                    self.fix_size_loop(names)
+
+    def assign_leaders(self) -> None:
+        for table in self.tables:
+            table.select_leader()
 
     def organize(self,names : list) -> None:
         """
@@ -218,10 +224,12 @@ class Openspace:
             for name in names:
                 self.assing_occupants(name)
             self.avoiding_loneliness()
+            self.assign_leaders()
         elif self._flag:
             for name in names[:self.capacity]:
                 self.assing_occupants(name)
             self.avoiding_loneliness()
+            self.assign_leaders()
         else:
             self.fix_size_loop(names)
             if not self._flag:

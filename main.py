@@ -1,7 +1,6 @@
 from utils.openspace import Openspace
 import pandas as pd
 from os import path as p
-#/Users/igorafanasIev/Desktop/becode_projects/challenge-openspace-classifier/challenge-openspace-classifier/new_colleagues.csv
 
 def read_from_csv() -> list:
     """

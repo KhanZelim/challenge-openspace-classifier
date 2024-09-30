@@ -71,5 +71,5 @@ def ask_about_size() -> Openspace:
 
 classroom = ask_about_size()
 classroom.organize(read_from_csv())
-classroom.dysplay()
+#classroom.dysplay()
 ask_filename()

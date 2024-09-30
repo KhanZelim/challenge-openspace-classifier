@@ -46,10 +46,10 @@ class Table:
 
     def has_free_spot(self) -> bool:
         """Function that will check if there are any free spots"""
-        if self.capacity == 0:
-            return False
-        else:
-            return True
+        for seat in self.seats:
+            if seat.free:
+                return True
+        return False
         
     def add_seat(self) -> None:
         """

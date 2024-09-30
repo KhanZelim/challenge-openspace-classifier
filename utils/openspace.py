@@ -70,8 +70,7 @@ class Openspace:
         for tabel in self.tables:
             if tabel.has_free_spot():
                 return True
-        else:
-            return False
+        return False
         
     
     def add_table(self) -> None:
@@ -199,20 +198,14 @@ class Openspace:
                     for name in names:
                         self.assing_occupants(name)
                     self.avoiding_loneliness()
-                    self.assign_leaders()
                     return (self.capacity,len(names))
                 elif self._flag:
                     for name in names[:self.capacity]:
                         self.assing_occupants(name)
                     self.avoiding_loneliness()
-                    self.assign_leaders()
                     return (self.capacity,len(names),self.names)
                 else:
-                    self.fix_size_loop(names)
-
-    def assign_leaders(self) -> None:
-        for table in self.tables:
-            table.select_leader()
+                    self.fix_size_loop(names)                    
 
     def organize(self,names : list) -> None:
         """
@@ -224,18 +217,65 @@ class Openspace:
             for name in names:
                 self.assing_occupants(name)
             self.avoiding_loneliness()
-            self.assign_leaders()
         elif self._flag:
             for name in names[:self.capacity]:
                 self.assing_occupants(name)
             self.avoiding_loneliness()
-            self.assign_leaders()
         else:
             self.fix_size_loop(names)
             if not self._flag:
                 print("There is still not enough space")
             else:
                 return self.names
+            
+    def adding_latecomers(self) -> None:
+        """
+        Function that adds people who are not in the file to the tables.
+        :return: None
+        """
+        def internal_seat_assign()-> None:
+            'Internal function for seat assignment'
+            seat_assigned = False
+            for tabel in self.tables:
+                if seat_assigned:
+                     break
+                if tabel.has_free_spot():
+                    for seat in tabel.seats:
+                        if seat.free:
+                            seat.set_occupant(name_input)
+                            seat_assigned = True
+                            break
+            
+        while True:
+            adding_answ = input('Do you want to add somebody? Y/N')
+            match adding_answ:
+                case 'Y':
+                    while True:
+                        name_input = input('Write the names. if all names were added write E')
+                        match name_input:
+                            case 'E':
+                                break
+                            case _:
+                                if re.fullmatch('^[A-Z]{1}[a-z]*$',name_input):
+                                    if self._flag:
+                                        print(1)
+                                        self.names.append(name_input)
+                                    elif self.has_space():
+                                       internal_seat_assign()
+                                    else:    
+                                        print(3)
+                                        names = [name_input]
+                                        flag = to_many_quest(names,self.number_of_tabels,self.table_capacity,self.capacity)
+                                        self.implemnt_decision(flag,names)
+                                        internal_seat_assign()
+                                    
+                                else:
+                                    print("It isn't name or E. Please try again ")
+                    break
+                case 'N':
+                    break
+                case _:
+                    print('Incorrect answer. Try again.')
                 
     def dysplay(self) -> None:
         """
@@ -255,6 +295,7 @@ class Openspace:
             :param: string that represent files name.
             :return: Nothing.
         """
+        self.adding_latecomers()
         repartition_dict = {f'Tabel #{index_t}': [f'Seat #{index } {str(seat)}' for index,seat in enumerate(tabel.seats,start=1)] 
                             for index_t,tabel in enumerate(self.tables,start=1)
                             }

@@ -190,8 +190,34 @@ class Openspace:
                 self.names = names
             case 'B':
                 self.add_both()
-                    
 
+    def fix_size_loop(self, names:list)->tuple:
+                """
+                    Function that iniciate interaction with user, 
+                        about how to fix openspace capasity problem.
+                    :param: names list is containing names of сolleagues in string.
+                    :return: tuple (int,int) = (self capacity of the Openspace, Quantety of colleagues).
+                """
+                flag = to_many_quest(names,self.number_of_tabels,self.table_capacity,self.capacity)
+                self.implemnt_decision(flag,names)
+                if_capasity = (self.capacity >= len(names)) 
+                if if_capasity:
+                    for name in names:
+                        self.assing_occupants(name)
+                    self.avoiding_loneliness()
+                    return (self.capacity,len(names))
+                elif self._flag:
+                    for name in names[:self.capacity]:
+                        self.assing_occupants(name)
+                    self.avoiding_loneliness()
+                    return (self.capacity,len(names),self.names)
+                else:
+                    self.fix_size_loop(names)  
+
+
+    def asign_leader(self):
+        for table in self.tables:
+            pass                  
 
     def organize(self,names : list) -> None:
         """

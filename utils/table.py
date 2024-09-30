@@ -1,3 +1,5 @@
+import random
+
 class Seat:
     """Class representing one seat"""
 
@@ -19,6 +21,9 @@ class Seat:
         """Function that will set the occupant to a blank string and sets the seat free"""
         self.occupant = ""
         self.free = True
+
+    def set_leader(self) -> None:
+        self.occupant += " (Table Leader)"
 
     def __str__(self) -> str:
         """A string representation of the seat's status"""
@@ -68,6 +73,11 @@ class Table:
             :return: int capacity of the tabel
         """
         return self.capacity
+    
+    def select_leader(self) -> None:
+        table_leader = random.choice(self.seats)
+        if not table_leader.free:
+            table_leader.set_leader()
 
     def __str__(self) -> str:
         """A string representation of the table's status"""

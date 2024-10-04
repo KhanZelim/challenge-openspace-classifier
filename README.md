@@ -78,4 +78,4 @@ This project took two days for completion.
 ## 📌 Personal Situation
 This project was done as part of the AI Boocamp at BeCode.org. 
 
-Connect with me on [LinkedIn](www.linkedin.com/in/zelimkhan-jachichanov-54b9231a7).
+Connect with me on [LinkedIn](www.linkedin.com/in/zelimkhan-jachichanov).
